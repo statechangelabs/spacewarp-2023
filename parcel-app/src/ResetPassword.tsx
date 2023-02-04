@@ -1,30 +1,28 @@
 import React, { FC } from "react";
 import { useAuthentication } from "./Authenticator";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import { validate as validateEmail } from "email-validator";
-const Login: FC = () => {
-  const { signupWithPassword, signupWithWallet } = useAuthentication();
-  const navigate = useNavigate();
+import { toast } from "react-toastify";
+const ResetPassword: FC = () => {
+  const { resetPassword } = useAuthentication();
   return (
     <Formik
-      initialValues={{ email: "", password: "", password2: "" }}
-      onSubmit={async ({ email, password, password2 }) => {
-        await signupWithPassword(email, password);
-        navigate("/");
+      initialValues={{ email: "" }}
+      onSubmit={async ({ email }, helpers) => {
+        helpers.setSubmitting(true);
+        await resetPassword(email);
+        toast("Check your email for a password reset link");
+        helpers.setSubmitting(false);
+        helpers.resetForm();
       }}
       validate={(values) => {
         const errors: Record<string, string> = {};
         if (!validateEmail(values.email)) {
           errors["email"] = "Invalid email";
         }
-        if (values.password.length < 8) {
-          errors["password"] = "Password must be at least 8 characters";
-        }
-        if (values.password !== values.password2) {
-          errors["password2"] = "Passwords do not match";
-        }
+
         if (Object.entries(errors).length > 0) {
           return errors;
         }
@@ -47,7 +45,7 @@ const Login: FC = () => {
               <Logo className="mx-auto h-12 w-12" />
 
               <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-100">
-                Sign up
+                Reset your password
               </h2>
               <p className="mt-2 text-center text-sm text-gray-200">
                 Or{" "}
@@ -81,55 +79,15 @@ const Login: FC = () => {
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                      Password
-                    </label>
-                    <div className="mt-1">
-                      <Field
-                        id="password"
-                        name="password"
-                        type="password"
-                        autoComplete="current-password"
-                        required
-                        className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
-                    <ErrorMessage
-                      component="div"
-                      name="password"
-                      className="text-sm text-red-600 mt-2 ml-2 font-medium"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="password2" className="block text-sm font-medium text-gray-700">
-                      Retype the password
-                    </label>
-                    <div className="mt-1">
-                      <Field
-                        id="password2"
-                        name="password2"
-                        type="password"
-                        autoComplete="current-password"
-                        required
-                        className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
-                    <ErrorMessage
-                      component="div"
-                      name="password2"
-                      className="text-sm text-red-600 mt-2 ml-2 font-medium"
-                    />
-                  </div>
                   <div className="flex items-center justify-between">
                     {/* <div className="text-sm">
-                      <Link
-                        href="/forgot-password"
-                        className="font-medium text-indigo-600 hover:text-indigo-500"
-                      >
-                        Forgot your password?
-                      </Link>
-                    </div> */}
+                        <Link
+                          href="/forgot-password"
+                          className="font-medium text-indigo-600 hover:text-indigo-500"
+                        >
+                          Forgot your password?
+                        </Link>
+                      </div> */}
                   </div>
 
                   <div>
@@ -144,7 +102,7 @@ const Login: FC = () => {
                           : " bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2")
                       }
                     >
-                      Sign Up with Email and Password
+                      Request a password reset email
                     </button>
                   </div>
                 </div>
@@ -156,4 +114,5 @@ const Login: FC = () => {
     </Formik>
   );
 };
-export default Login;
+
+export default ResetPassword;

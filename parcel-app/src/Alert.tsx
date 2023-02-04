@@ -1,4 +1,4 @@
-import {
+import React, {
   createContext,
   FC,
   Fragment,
@@ -79,12 +79,7 @@ const AlertProvider: FC<{ children: ReactElement }> = ({ children }) => {
     <Provider value={value}>
       {children}
       <Transition.Root show={show} as={Fragment}>
-        <Dialog
-          as="div"
-          className="relative z-10"
-          initialFocus={cancelButtonRef}
-          onClose={setShow}
-        >
+        <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setShow}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -117,10 +112,7 @@ const AlertProvider: FC<{ children: ReactElement }> = ({ children }) => {
                       />
                     </div>
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                      <Dialog.Title
-                        as="h3"
-                        className="text-lg font-medium leading-6 text-gray-900"
-                      >
+                      <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
                         {title}
                       </Dialog.Title>
                       <div className="mt-2">
@@ -167,15 +159,8 @@ const AlertProvider: FC<{ children: ReactElement }> = ({ children }) => {
 export default AlertProvider;
 
 export const useAlert = () => {
-  const {
-    setTitle,
-    setMessage,
-    setOnFinalize,
-    setShow,
-    show,
-    setActionLabel,
-    setCancelLabel,
-  } = useContext(context);
+  const { setTitle, setMessage, setOnFinalize, setShow, show, setActionLabel, setCancelLabel } =
+    useContext(context);
 
   const alert = useCallback(
     async (options: {
@@ -198,15 +183,7 @@ export const useAlert = () => {
       setShow(false);
       return result;
     },
-    [
-      setMessage,
-      setOnFinalize,
-      setTitle,
-      show,
-      setShow,
-      setActionLabel,
-      setCancelLabel,
-    ]
+    [setMessage, setOnFinalize, setTitle, show, setShow, setActionLabel, setCancelLabel]
   );
   const confirm = useCallback(
     async (options: {
