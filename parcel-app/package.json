@@ -30,6 +30,7 @@
     "email-validator": "^2.0.4",
     "formik": "^2.2.9",
     "luxon": "^3.2.1",
+    "parcel-reporter-static-files-copy": "^1.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
