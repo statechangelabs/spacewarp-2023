@@ -24,8 +24,7 @@ export const App: FC = () => {
               <Route path="/signup" element={<Signup />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/reset-password/:key" element={<ChangePassword />} />
-              <Route path="/" element={<Login />} />
-              <Route path="*" element={<Navigate to="/" />} />
+              <Route path="*" element={<Login />} />={" "}
             </Routes>
           }
         >
