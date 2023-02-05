@@ -4,7 +4,32 @@ export type FSListener = {
   id: number;
   name: string;
   url: string;
+  topics: string[];
+  fvm_addresses: string[];
+  eth_addresses: string[];
+  _abi?: {
+    data: any;
+  };
 };
+export const useCreateListener = () => {
+  const fetch = useAuthenticatedFetch();
+  const { refresh } = useListeners();
+  return useCallback(
+    async (options: { name: string; url: string; addresses: string[]; topics: []; abi?: any }) => {
+      const response = await fetch(`/listeners`, {
+        method: "POST",
+        body: JSON.stringify(options),
+      });
+      if (response.status === 200) {
+        refresh();
+      } else {
+        throw new Error(response.statusText);
+      }
+    },
+    [fetch, refresh]
+  );
+};
+
 export const useListeners = () => {
   const fetch = useAuthenticatedFetch();
   const { data, error, loading, refresh } = useAuthenticatedQuery<FSListener[]>("/listeners");
@@ -36,10 +61,10 @@ export const useListener = (id: number) => {
   );
   const update = useCallback(
     async (options: {
-      name?: string;
-      url?: string;
-      addresses?: string[];
-      topics?: [];
+      name: string;
+      url: string;
+      addresses: string[];
+      topics?: string[];
       abi?: any;
     }) => {
       const response = await fetch(`/listeners/${id}`, {

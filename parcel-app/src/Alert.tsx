@@ -192,7 +192,7 @@ export const useAlert = () => {
       acceptLabel?: string;
       cancelLabel?: string;
     }) => {
-      alert({
+      return alert({
         title: options.title,
         message: options.message,
         actionLabel: options.acceptLabel || "Confirm",

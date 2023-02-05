@@ -8,7 +8,7 @@ import { useEvents } from "./useListeners";
 import copy from "clipboard-copy";
 import { DateTime } from "luxon";
 const Events: FC = () => {
-  const { alert } = useAlert();
+  const { confirm } = useAlert();
   const { setTitle } = useBase();
   useEffect(() => {
     setTitle("My Sent Events");
@@ -30,9 +30,9 @@ const Events: FC = () => {
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
           <p className="mt-2 text-medium text-gray-700">
-            Recent requests made via your{" "}
-            <Link className="text-blue-600 hover:text-blue-800" to="/oracles">
-              oracles.
+            Recent webhooks fired via your{" "}
+            <Link className="text-blue-600 hover:text-blue-800" to="/streams">
+              streams.
             </Link>
           </p>
         </div>
@@ -91,10 +91,10 @@ const Events: FC = () => {
                       <td className="whitespace-nowrap py-4 text-sm font-medium text-gray-900 sm:pl-2">
                         <button
                           onClick={() => {
-                            alert({
+                            confirm({
                               title: "Remove this request?",
                               message:
-                                "This just removes the log. The actual transaction remains on-chain. This action cannot be undone",
+                                "This action will remove the record of this transmitted webhook This action cannot be undone",
                             }).then(() => {
                               remove(event.id);
                               toast.success("Removed request log");
