@@ -5,6 +5,7 @@ require("./tasks")
 require("dotenv").config()
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY
+const AKSHAY_KEY = process.env.PRIVATE_KEY_AKSHAY
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
     solidity: "0.8.17",
@@ -13,7 +14,7 @@ module.exports = {
         hyperspace: {
             chainId: 3141,
             url: "https://api.hyperspace.node.glif.io/rpc/v1",
-            accounts: [PRIVATE_KEY],
+            accounts: [PRIVATE_KEY, AKSHAY_KEY],
         },
     },
     paths: {

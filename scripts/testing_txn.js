@@ -8,7 +8,7 @@ const ENDPOINT = "https://api.hyperspace.node.glif.io/rpc/v1";
 let web3 = new Web3(ENDPOINT);
 
 const DEPLOYER_PRIVATE_KEY = network.config.accounts[0]
-
+const AKSHAY_KEY = network.config.accounts[1]
 // async function callRpc(method, params) {
 //     var options = {
 //         method: "POST",
@@ -34,10 +34,11 @@ async function main() {
     let contract_address = "0x7B64F83b1183e644e9495DFa465E7AebB8e479F1";
     const provider = new ethers.providers.JsonRpcProvider(ENDPOINT);
     const deployer = new ethers.Wallet(DEPLOYER_PRIVATE_KEY, provider);
+    const akshay = new ethers.Wallet(AKSHAY_KEY, provider);
     const SimpleCoin = await ethers.getContractFactory("SimpleCoin");
     const simpleCoin = await SimpleCoin.attach(contract_address);
 
-    const tx = await simpleCoin.connect(deployer).sendCoin("0x90f14e3282977416286085e0d90210A400bEFD22", 1000);
+    const tx = await simpleCoin.connect(akshay).sendCoin("0x47C0485Ac6392EeA8ae37BB469f485e8c0aCdd86", 50);
     console.log("Transaction :", tx);
     const receipt = await tx.wait();
     console.log("Receipt :", receipt);

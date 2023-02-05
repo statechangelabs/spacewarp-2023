@@ -5,15 +5,15 @@ error SimpleCoin__NotEnoughBalance();
 
 contract SimpleCoin {
     mapping(address => uint) balances;
-    uint256 private i_tokensToBeMinted = 10000;
+    uint256 private i_tokensToBeMinted = 100000;
 
-    event TestEvent2();
+    event ContractCreated(uint256 amountMinted);
     event SentToken(address from, address to, uint amount);
 
     constructor(uint256 tokensToBeMinted) {
         balances[tx.origin] = tokensToBeMinted;
         i_tokensToBeMinted = tokensToBeMinted;
-        emit TestEvent2();
+        emit ContractCreated(tokensToBeMinted);
     }
 
     function sendCoin(address receiver, uint amount) public returns (bool sufficient) {

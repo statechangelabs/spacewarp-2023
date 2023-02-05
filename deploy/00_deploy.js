@@ -59,20 +59,20 @@ module.exports = async ({ deployments }) => {
         log: true,
     })
 
-    await deployLogError("FilecoinMarketConsumer", {
-        from: deployer.address,
-        args: [],
-        // maxPriorityFeePerGas to instruct hardhat to use EIP-1559 tx format
-        maxPriorityFeePerGas: priorityFee,
-        log: true,
-    })
+    // await deployLogError("FilecoinMarketConsumer", {
+    //     from: deployer.address,
+    //     args: [],
+    //     // maxPriorityFeePerGas to instruct hardhat to use EIP-1559 tx format
+    //     maxPriorityFeePerGas: priorityFee,
+    //     log: true,
+    // })
 
-    await deployLogError("DealRewarder", {
-        from: deployer.address,
-        args: [],
-        // maxPriorityFeePerGas to instruct hardhat to use EIP-1559 tx format
-        maxPriorityFeePerGas: priorityFee,
-        log: true,
-    })
+    // await deployLogError("DealRewarder", {
+    //     from: deployer.address,
+    //     args: [],
+    //     // maxPriorityFeePerGas to instruct hardhat to use EIP-1559 tx format
+    //     maxPriorityFeePerGas: priorityFee,
+    //     log: true,
+    // })
 }
 
