@@ -31,7 +31,7 @@ const ABIParser: FC<{ abi: string }> = ({ abi }) => {
       return [];
     }
   }, [abi]);
-  if (!events && !events.length) {
+  if (!events || !events.length) {
     return null;
   }
   return (
