@@ -31,18 +31,30 @@ const AKSHAY_KEY = network.config.accounts[1]
 
 async function main() {
     console.log("Sending Coins");
-    let contract_address = "0x7B64F83b1183e644e9495DFa465E7AebB8e479F1";
+    let contract_address = "0xC34C6656f8bB3d6B0b0F4f1EB8615909187f3d84";
     const provider = new ethers.providers.JsonRpcProvider(ENDPOINT);
     const deployer = new ethers.Wallet(DEPLOYER_PRIVATE_KEY, provider);
     const akshay = new ethers.Wallet(AKSHAY_KEY, provider);
     const SimpleCoin = await ethers.getContractFactory("SimpleCoin");
     const simpleCoin = await SimpleCoin.attach(contract_address);
 
-    const tx = await simpleCoin.connect(akshay).sendCoin("0x47C0485Ac6392EeA8ae37BB469f485e8c0aCdd86", 50);
-    console.log("Transaction :", tx);
-    const receipt = await tx.wait();
-    console.log("Receipt :", receipt);
-    console.log("Transaction events:", receipt.events);
+    const tx_1 = await simpleCoin.connect(deployer).sendCoin("0x90f14e3282977416286085e0d90210A400bEFD22", 10000);
+    console.log("Transaction :", tx_1);
+    const receipt_1 = await tx_1.wait();
+    console.log("Receipt :", receipt_1);
+    console.log("Transaction events:", receipt_1.events);
+
+    const tx_2 = await simpleCoin.connect(deployer).sendCoin("0x47C0485Ac6392EeA8ae37BB469f485e8c0aCdd86", 10000);
+    console.log("Transaction :", tx_2);
+    const receipt_2 = await tx_2.wait();
+    console.log("Receipt :", receipt_2);
+    console.log("Transaction events:", receipt_2.events);
+
+    const tx_3 = await simpleCoin.connect(akshay).sendCoin("0x47C0485Ac6392EeA8ae37BB469f485e8c0aCdd86", 42);
+    console.log("Transaction :", tx_3);
+    const receipt_3 = await tx_3.wait();
+    console.log("Receipt :", receipt_3);
+    console.log("Transaction events:", receipt_3.events);
 
 }
 
