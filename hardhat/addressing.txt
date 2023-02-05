@@ -1,0 +1,17 @@
+contract_address = t410fpnspqoyrqptej2kjlx5emxt25o4oi6pruvouyeq
+bytes = 9f 0a f6 c9 f0 76 23 07 cc 89 d2 92 bb f4 8c bc f5 d7 71 c8 f3 e3 4a ba 98 24
+stripped address = pnspqoyrqptej2kjlx5emxt25o4oi6pruvouyeq
+bytes_for_stripped_address = 7b 64 f8 3b 11 83 e6 44 e9 49 5d fa 46 5e 7a eb b8 e4 79 f1 a5 5d 4c 12
+correct_address = 0x7B64F83b1183e644e9495DFa465E7AebB8e479F1
+
+EOA_address = t410f677uikubqtqrgr3lnd25ft7ok6wrvzw636qumvy
+bytes = 9f 0b ef fe 88 55 03 09 c2 26 8e d6 d1 eb a5 9f dc af 5a 35 cd bd bf 42 8c ae
+stripped address = 677uikubqtqrgr3lnd25ft7ok6wrvzw636qumvy
+bytes_for_stripped_address = f7 ff 44 2a 81 84 e1 13 47 6b 68 f5 d2 cf ee 57 ad 1a e6 de df a1 46 57
+correct_address = 0xF7ff442a8184e113476b68f5d2cfee57ad1ae6de
+
+EOA_address_2 = t410fsdyu4mucs52bmkdaqxqnsaqquqal57jcflxeapi
+bytes = 9f 0b 21 e2 9c 65 05 2e e8 2c 50 c1 0b c1 b2 04 21 48 01 7d fa 44 55 dc 80 7a
+stripped address = sdyu4mucs52bmkdaqxqnsaqquqal57jcflxeapi
+bytes_for_stripped_address = 90 f1 4e 32 82 97 74 16 28 60 85 e0 d9 02 10 a4 00 be fd 22 2a ee 40 3d
+correct_address = 0x90f14e3282977416286085e0d90210A400bEFD22
