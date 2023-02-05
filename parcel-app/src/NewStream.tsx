@@ -31,7 +31,7 @@ const NewStream: FC<{
   const navigate = useNavigate();
   const { setTitle } = useBase();
   useEffect(() => {
-    setTitle("Create a new Filestream");
+    setTitle("Create a new FileStream");
   }, [setTitle]);
   return (
     <Formik

@@ -23,7 +23,7 @@ const Streams: FC = () => {
     };
   }, [setShowBack]);
   useEffect(() => {
-    setTitle("My Streams");
+    setTitle("My FileStreams");
   }, [setTitle]);
   const { confirm } = useAlert();
   const { listeners, refresh, loading, error, remove } = useListeners();
