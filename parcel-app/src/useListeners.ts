@@ -7,7 +7,7 @@ export type FSListener = {
   topics: string[];
   fvm_addresses: string[];
   eth_addresses: string[];
-  _abi?: {
+  _abis?: {
     data: any;
   };
 };

@@ -15,6 +15,7 @@ import { useCreateListener, useListener } from "./useListeners";
 import { isWebUri } from "valid-url";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useBase } from "./Base";
+import ABIParser from "./AbiParser";
 
 const EditStream: FC = () => {
   const create = useCreateListener();
@@ -35,7 +36,7 @@ const EditStream: FC = () => {
         url: listener.url,
         addresses: listener.eth_addresses,
         topics: listener.topics,
-        abi: JSON.stringify(listener._abi?.data, null, 2),
+        abi: JSON.stringify(listener._abis?.data, null, 2),
       }}
       onSubmit={async (values, form) => {
         try {
@@ -154,6 +155,11 @@ const EditStream: FC = () => {
                     <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                       <div className="grid grid-cols-3 gap-6">
                         <TextAreaField title="ABI as JSON" name="abi" />
+                      </div>
+                    </div>
+                    <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+                      <div className="grid grid-cols-3 gap-6">
+                        <ABIParser abi={values.abi} />
                       </div>
                     </div>
                     <div className="space-y-6 bg-white px-4 py-5 sm:p-6">

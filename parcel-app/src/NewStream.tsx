@@ -1,6 +1,6 @@
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { Formik, Form } from "formik";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { toast } from "react-toastify";
 import {
   TextField,
@@ -14,6 +14,8 @@ import {
 import { useCreateListener } from "./useListeners";
 import { isWebUri } from "valid-url";
 import { Navigate, useNavigate } from "react-router-dom";
+import ABIParser from "./AbiParser";
+import { useBase } from "./Base";
 
 const NewStream: FC<{
   name?: string;
@@ -24,9 +26,13 @@ const NewStream: FC<{
   topics?: string[];
 
   abi?: any;
-}> = ({ name = "My listener", url, addresses, topics, abi }) => {
+}> = ({ name = "My filestream", url, addresses, topics, abi }) => {
   const create = useCreateListener();
   const navigate = useNavigate();
+  const { setTitle } = useBase();
+  useEffect(() => {
+    setTitle("Create a new Filestream");
+  }, [setTitle]);
   return (
     <Formik
       initialValues={{
@@ -125,9 +131,11 @@ const NewStream: FC<{
                 <div className="md:col-span-1">
                   <div className="px-4 sm:px-0">
                     <h3 className="text-lg font-medium leading-6 text-gray-900">
-                      The Target Event - what to listen for?
+                      The Target Address - what actor to listen for?
                     </h3>
-                    <p className="mt-1 text-sm text-gray-600"></p>
+                    <p className="mt-1 text-sm text-gray-600">
+                      Note currently this requires an eth-style (0x) address
+                    </p>
                   </div>
                 </div>
                 <div className="mt-5 md:col-span-2 md:mt-0">
@@ -152,6 +160,11 @@ const NewStream: FC<{
                     <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                       <div className="grid grid-cols-3 gap-6">
                         <TextAreaField title="ABI as JSON" name="abi" />
+                      </div>
+                    </div>
+                    <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+                      <div className="grid grid-cols-3 gap-6">
+                        <ABIParser abi={values.abi} />
                       </div>
                     </div>
                     <div className="space-y-6 bg-white px-4 py-5 sm:p-6">

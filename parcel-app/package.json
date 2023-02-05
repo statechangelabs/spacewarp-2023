@@ -30,6 +30,7 @@
     "@types/luxon": "^3.2.0",
     "clipboard-copy": "^4.0.1",
     "email-validator": "^2.0.4",
+    "ethers": "5.4.7",
     "formik": "^2.2.9",
     "luxon": "^3.2.1",
     "parcel-reporter-static-files-copy": "^1.5.0",
