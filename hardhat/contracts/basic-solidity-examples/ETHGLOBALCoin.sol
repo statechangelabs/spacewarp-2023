@@ -3,7 +3,7 @@ pragma solidity 0.8.17;
 
 error SimpleCoin__NotEnoughBalance();
 
-contract SimpleCoin {
+contract ETHGLOBALCoin {
     mapping(address => uint) balances;
     uint256 private i_tokensToBeMinted = 100000;
 

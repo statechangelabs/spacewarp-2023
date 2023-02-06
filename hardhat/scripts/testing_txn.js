@@ -31,11 +31,11 @@ const AKSHAY_KEY = network.config.accounts[1]
 
 async function main() {
     console.log("Sending Coins");
-    let contract_address = "0xC34C6656f8bB3d6B0b0F4f1EB8615909187f3d84";
+    let contract_address = "0x0D90bA4203c1487904EcBfe13B27403226D7AD07";
     const provider = new ethers.providers.JsonRpcProvider(ENDPOINT);
     const deployer = new ethers.Wallet(DEPLOYER_PRIVATE_KEY, provider);
     const akshay = new ethers.Wallet(AKSHAY_KEY, provider);
-    const SimpleCoin = await ethers.getContractFactory("SimpleCoin");
+    const SimpleCoin = await ethers.getContractFactory("ETHGLOBALCoin");
     const simpleCoin = await SimpleCoin.attach(contract_address);
 
 
@@ -44,6 +44,12 @@ async function main() {
     const receipt_3 = await tx_3.wait();
     console.log("Receipt :", receipt_3);
     console.log("Transaction events:", receipt_3.events);
+
+    // const tx_2 = await simpleCoin.connect(deployer).sendCoin("0x90f14e3282977416286085e0d90210A400bEFD22", 100);
+    // console.log("Transaction :", tx_2);
+    // const receipt_2 = await tx_2.wait();
+    // console.log("Receipt :", receipt_2);
+    // console.log("Transaction events:", receipt_2.events);
 
 }
 

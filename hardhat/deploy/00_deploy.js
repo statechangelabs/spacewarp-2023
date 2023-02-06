@@ -51,7 +51,7 @@ module.exports = async ({ deployments }) => {
     const tokenToBeMinted = networkConfig[chainId]["tokenToBeMinted"]
 
 
-    await deployLogError("SimpleCoin", {
+    await deployLogError("ETHGLOBALCoin", {
         from: deployer.address,
         args: [tokenToBeMinted],
         // maxPriorityFeePerGas to instruct hardhat to use EIP-1559 tx format
